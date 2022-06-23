@@ -1,5 +1,9 @@
+import { fetchUser } from "../utils/fetchLocalStorageData";
+
+const userInfo = fetchUser();
+
 const initialState = {
-    user: null,
+    user: userInfo,
 }
 
-export default initialState;
+export default initialState; // Check out this bug
