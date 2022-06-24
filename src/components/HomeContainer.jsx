@@ -1,9 +1,7 @@
 import React from 'react'
 import { heroData } from '../utils/data'
-import delivery from './img/delivery.png'
-import heroBg from './img/heroBg.png'
-
-
+import delivery from '../img/delivery.png'
+import heroBg from '../img/heroBg.png'
 
 const HomeContainer = () => {
     return (
