@@ -1,4 +1,5 @@
 import React from 'react'
+// import { createRoot } from 'react-dom/client'
 import ReactDom from 'react-dom'
 import './index.css'
 
@@ -17,3 +18,14 @@ ReactDom.render(
     </Router>,
     document.getElementById('root')
 )
+
+// createRoot(document.getElementById('root'))
+//     .render(
+//         <React.StrictMode>
+//             <Router>
+//                 <StateProvider initialState={initialState} reducer={reducer}>
+//                     <App />
+//                 </StateProvider>
+//             </Router>,
+//         </React.StrictMode>
+//     );
