@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { motion } from 'framer-motion'
 
-import { MdFastfood } from 'react-icons/md'
+import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md'
 import { categories } from '../utils/data';
 import Loader from './Loader';
 
@@ -16,8 +16,11 @@ const CreateContainer = () => {
     const [fields, setFields] = useState(false);
     const [alertStatus, setAlertStatus] = useState('danger');
     const [msg, setMsg] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
+    const uploadImage = () => { }
+    const deleteImage = () => { }
+    const saveDetails = () => { }
 
     return (
         <div className='w-full min-h-screen flex items-center justify-center'>
@@ -35,7 +38,7 @@ const CreateContainer = () => {
                 }
                 <div className='w-full py-2 border-b border-gray-300 flex items-center gap-2'>
                     <MdFastfood className='text-xl text-gray-700' />
-                    <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Give me a title...' className='w-full h-full text-lg bg-transparent font-semibold outline-none border-none placeholder:text-gray-400 text-textColor' />
+                    <input type="text" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Give me a title...' className='w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor' />
                 </div>
 
 
@@ -53,8 +56,83 @@ const CreateContainer = () => {
 
 
                 <div className='group flex justify-center items-center flex-col border-2 border-dotted border-gray-300 w-full h-225 md:h-420 cursor-pointer rounded-lg'>
-                    {isLoading ? <Loader /> : <></>}
+                    {isLoading ? (
+                        <Loader />
+                    ) : (
+                        <>
+                            {!imageAsset ? (
+                                <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
+                                    <div className="w-full h-full flex flex-col items-center justify-center">
+                                        <MdCloudUpload className="text-gray-500 group-hover:text-gray-700 text-3xl" />
+                                        <p className="text-gray-500 group-hover:text-gray-700">
+                                            Click here to upload
+                                        </p>
+                                    </div>
+                                    <input
+                                        type="file"
+                                        name="upload-image"
+                                        accept="image/*"
+                                        onChange={uploadImage}
+                                        className="w-0 h-0"
+                                    />
+                                </label>
+                            ) : (
+                                <div className="relative h-full">
+                                    <img
+                                        src={imageAsset}
+                                        alt="upload"
+                                        className="h-full w-full object-cover"
+                                    />
+                                    <button
+                                        type="button"
+                                        className="absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl
+                  cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
+                                        onClick={deleteImage}
+                                    >
+                                        <MdDelete className="text-white" />
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    )}
                 </div>
+
+                <div className="w-full flex flex-col md:flex-row items-center gap-3">
+                    <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
+                        <MdFoodBank className="text-gray-700 text-2xl" />
+                        <input
+                            type="text"
+                            required
+                            placeholder="Give me calories..."
+                            className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-500 text-textColor"
+                            value={calories}
+                            onChange={(e) => setCalories(e.target.value)}
+                        />
+                    </div>
+
+                    <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
+                        <MdAttachMoney className="text-gray-700 text-2xl" />
+                        <input
+                            type="text"
+                            required
+                            placeholder="Add the price..."
+                            className="w-full h-full text-lg  bg-transparent outline-none order-none placeholder:text-gray-500"
+                            value={price}
+                            onChange={(e) => setPrice(e.target.value)}
+                        />
+                    </div>
+                </div>
+
+                <div className="flex items-center w-full">
+                    <button
+                        type="button"
+                        className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold"
+                        onClick={saveDetails}
+                    >
+                        Save
+                    </button>
+                </div>
+
             </div>
         </div >
     )
