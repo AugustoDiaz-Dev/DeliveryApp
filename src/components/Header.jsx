@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import logo from '../img/logo.png'
 import avatar from '../img/avatar.png'
+
 import { BsCart4 } from "react-icons/bs"
 import { MdAdd, MdLogout } from 'react-icons/md'
-import { motion } from 'framer-motion'
 
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider'
 import { actionType } from '../context/reducer'
-
 import { app } from '../firebase.config'
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth"
-
 const Header = () => {
     const firebaseAuth = getAuth(app);
     const provider = new GoogleAuthProvider();
